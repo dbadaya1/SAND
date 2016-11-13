@@ -1,0 +1,8 @@
+JAVA_HOME="/home/ubuntu/jdk1.8.0_111"
+PATH=$PATH:$JAVA_HOME/bin
+SRC="/media/ubuntu/Softwares/Coding/java/SAND"
+
+javac Test.java
+#javac -Xlint:unchecked -d ../out/production *.java
+#java SAND.Main
+

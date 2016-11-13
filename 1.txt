@@ -1,0 +1,15 @@
+export SRC="/home/ubuntu/SAND"
+
+cd src
+javah -d ../out -jni SAND.java.WriteFIFO
+javah -d ../out -jni SAND.java.ReadFIFO
+
+
+cd "$SRC/src/SAND/c"
+sudo gcc -o /usr/lib/libWriteFIFO.so -m64 -shared -I"$JAVA_HOME/include" -MD -LD -fPIC -I"$JAVA_HOME/include/linux" writeFIFO.c
+sudo gcc -o /usr/lib/libReadFIFO.so -m64 -shared -I"$JAVA_HOME/include" -MD -LD -fPIC -I"$JAVA_HOME/include/linux" readFIFO.c
+sudo gcc -I"$JAVA_HOME/include" -MD -LD -fPIC -I"$JAVA_HOME/include/linux" 11.c -lpthread
+
+
+cd "$SRC/src/SAND/java"
+javac -d ../../../out *.java

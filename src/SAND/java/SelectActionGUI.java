@@ -1,0 +1,52 @@
+package SAND.java;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.InetAddress;
+
+public class SelectActionGUI extends BasePanel {
+    private JButton btnChat,btnFileTransfer;
+    private InetAddress ipAddress;
+    private JTextField temp;
+    private int remoteId;
+
+
+    SelectActionGUI(int remoteId) {
+        super();
+        initialize();
+        addActionListeners();
+        this.remoteId = remoteId;
+
+        try {
+            ipAddress = InetAddress.getByName("www.javatpoint.com");
+        }
+        catch (Exception e) {}
+
+    }
+
+
+    void initialize() {
+        setSize(500, 400);
+        setVisible(true);
+
+        btnChat = new JButton("Chat");
+        btnFileTransfer = new JButton("File Transfer");
+        temp = new JTextField();
+
+        add(btnChat);
+       // add(btnFileTransfer);
+        add(temp);
+    }
+
+    void addActionListeners() {
+        btnChat.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                ChatGUI temp = new ChatGUI(remoteId);
+                parent.openPanel(temp);
+
+            }
+        });
+    }
+
+
+}

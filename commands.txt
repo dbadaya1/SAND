@@ -1,0 +1,31 @@
+cl -I"C:\Program Files\Java\jdk1.8.0_20\include" -MD -LD -I"C:\Program Files\Java\jdk1.8.0_20\include\win32" HelloWorld.c -FeHelloWorld.dll 
+
+gcc -o HelloWorld.dll -shared -I"C:\Program Files\Java\jdk1.8.0_20\include" -MD -LD -I"C:\Program Files\Java\jdk1.8.0_20\include\win32" HelloWorld.c
+
+
+gcc -o WriteFIFO.dll -m64 -shared -I"%JAVA_HOME%/include" -MD -LD -I"%JAVA_HOME%/include\linux" -L"%JAVA_HOME%/lib/jvm.lib" writeFIFO.c
+
+javap -s -p Test.class
+
+
+gcc -I"%JAVA_HOME%/include" -I"%JAVA_HOME%/include\win32" Test.c -L"%JAVA_HOME%/lib" -ljvm
+
+
+
+
+
+javah -d ../out -jni SAND.java.WriteFIFO
+javah -d ../out -jni SAND.java.ReadFIFO
+
+
+sudo gcc -o /usr/lib/libWriteFIFO.so -m64 -shared -I"$JAVA_HOME/include" -MD -LD -fPIC -I"$JAVA_HOME/include/linux" writeFIFO.c
+sudo gcc -o /usr/lib/libReadFIFO.so -m64 -shared -I"$JAVA_HOME/include" -MD -LD -fPIC -I"$JAVA_HOME/include/linux" readFIFO.c
+
+
+javac -d ../../../out *.java
+
+
+
+sudo gcc -I"$JAVA_HOME/include" -MD -LD -fPIC -I"$JAVA_HOME/include/linux" 11.c
+
+
